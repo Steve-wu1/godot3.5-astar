@@ -6,13 +6,15 @@ onready var grid_navigation_AStar = self
 onready var dict_square_type : Dictionary = {
 	-1 : "INVALID", #dict_square_type[0]
 	0 : "HINDER",
-	1 : "PASS"
+	1 : "PASS",
+	2 : "WATER",
 }
 #字典：方格类型名称对应方格权重字典，方格类型名称：权重值
 export onready var dict_square_weight : Dictionary = {
 	"INVALID" : 100,
 	"HINDER" : 50,
-	"PASS" : 1
+	"PASS" : 1,
+	"WATER":5
 }
 #内部类 类：方格 存放网格中一单个的方格信息
 class square:
@@ -49,7 +51,6 @@ class square:
 		var vertical_distance : int = abs(y - destination_square.y)
 		var H_cost : int
 		H_cost = (horizontal_distance + vertical_distance) * 10
-		print(H_cost)
 		#if horizontal_distance > vertical_distance:
 		# H_cost = (horizontal_distance - vertical_distance) * 10 + vertical_distance * 14
 		#else:
@@ -67,7 +68,6 @@ class square:
 	#函数：依据F值比较大小，目的是作为自定义排序的函数，open_list是Array<square>，
 	#可调用 void sort_custom(obj: Object, func: String)
 	static func sort_square_by_F(square_a: square, square_b:square) ->bool:
-		print("fffff",square_a.F,square_b.F)
 		if(square_a.F < square_b.F):
 			print(square_a.F,square_b.F)
 			return true
