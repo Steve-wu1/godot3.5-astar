@@ -33,7 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				vector2.x = path_AStar[i].x * 16 + 8
 				vector2.y = path_AStar[i].y * 16 + 8
 				path_in_world.append(vector2)
-				print(path_in_world)
 				line_2d.points = path_in_world
 		else:
 			print("path_AStar is NULL")
